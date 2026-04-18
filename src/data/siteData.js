@@ -8,7 +8,7 @@ export const siteData = {
     name: 'Татьяна Максимова',
     role: 'Нутрициолог и wellness coach',
     credentials: 'Мягкое сопровождение для энергии, баланса и спокойных пищевых привычек',
-    avatarUrl: './tantan.png',
+    avatarUrl: './tantan.svg',
     avatarAlt: 'Портрет нутрициолога Татьяны Максимовой',
     heroTag: 'Персональная практика',
     heroTitle: 'Питание, с которым телу спокойно, а энергии хватает на жизнь.',
