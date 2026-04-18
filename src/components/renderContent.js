@@ -212,11 +212,13 @@ export function createPageMarkup(data) {
 
             <div class="hero__visual">
               <div class="hero-card">
-                <img
-                  src="${data.specialist.avatarUrl}"
-                  alt="${data.specialist.avatarAlt}"
-                  class="hero-card__image"
-                />
+                <div class="hero-card__media">
+                  <img
+                    src="${data.specialist.avatarUrl}"
+                    alt="${data.specialist.avatarAlt}"
+                    class="hero-card__image"
+                  />
+                </div>
                 <div class="hero-card__body">
                   <span class="pill">Онлайн по всему миру</span>
                   <h2>${data.specialist.role}</h2>
@@ -345,4 +347,3 @@ export function createPageMarkup(data) {
     </div>
   `;
 }
-
