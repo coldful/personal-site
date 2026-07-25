@@ -42,7 +42,7 @@ function initMobileMenu() {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 960) {
+    if (window.innerWidth > 1100) {
       setMenuState(false);
     }
   });
