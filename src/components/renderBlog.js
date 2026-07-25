@@ -1,13 +1,13 @@
 function renderPostCard(post) {
   return `
-    <article class="blog-card">
-      <div class="blog-card__meta">
+    <article class="article-card">
+      <div class="article-card__meta">
         <span>${post.date}</span>
         <span>${post.readTime}</span>
       </div>
       <h3>${post.title}</h3>
       <p>${post.excerpt}</p>
-      <a class="text-link" href="${post.href}">Читать / открыть</a>
+      <a class="text-link" href="${post.href}">Читать</a>
     </article>
   `;
 }
@@ -15,7 +15,7 @@ function renderPostCard(post) {
 export function renderBlogLoading(gridElement, statusElement) {
   statusElement.textContent = 'Загружаю материалы...';
   gridElement.innerHTML = Array.from({ length: 3 }, () => `
-    <article class="blog-card blog-card--loading" aria-hidden="true">
+    <article class="article-card article-card--loading" aria-hidden="true">
       <div class="skeleton skeleton--line"></div>
       <div class="skeleton skeleton--title"></div>
       <div class="skeleton skeleton--block"></div>
