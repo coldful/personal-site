@@ -188,7 +188,7 @@ export function createPageMarkup(data) {
           </div>
         </section>
 
-        <section class="section about-profile-section" id="about">
+        <section class="section section--solid about-profile-section" id="about">
           <div class="about-profile">
             <div class="about-profile__media">
               <img

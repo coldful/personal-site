@@ -4,17 +4,20 @@
   --bg-soft: #ebe2d4;
   --bg-deep: #e0d5c4;
   --surface: #faf5ed;
-  --surface-glass: rgba(250, 245, 237, 0.96);
-  --line: rgba(10, 92, 72, 0.14);
-  --text: #2c2f2e;
-  --muted: #5c615e;
+  --surface-glass: rgba(250, 245, 237, 0.5);
+  --surface-glass-soft: rgba(235, 226, 212, 0.45);
+  --surface-card: rgba(250, 245, 237, 0.9);
+  --line: rgba(10, 92, 72, 0.16);
+  --text: #1a211e;
+  --muted: #3a433f;
   --accent: #0d6e56;
   --accent-deep: #085544;
   --accent-soft: rgba(13, 110, 86, 0.12);
-  --olive: #6b705c;
+  --olive: #556055;
   --sand: #c4b59a;
-  --graphite: #3d3f3e;
+  --graphite: #2c322f;
   --shadow: 0 18px 40px rgba(30, 69, 66, 0.1);
+  --text-glow: 0 1px 2px rgba(255, 252, 246, 0.9), 0 0 18px rgba(250, 245, 237, 0.65);
   --radius: 4px;
   --container: 100%;
   --page-pad: clamp(20px, 5vw, 80px);
@@ -103,15 +106,62 @@ ul {
 .section {
   width: 100%;
   padding: 88px 0;
-  background: var(--surface);
+  background: var(--surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .section--soft {
-  background: var(--bg-soft);
+  background: var(--surface-glass-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.section--solid {
+  background: var(--surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.section--solid h2,
+.section--solid p,
+.section--solid li,
+.section--solid .eyebrow,
+.section--solid .list-lead {
+  text-shadow: none;
 }
 
 .section--contact {
   padding-bottom: 112px;
+}
+
+/* Keep text readable over translucent nature */
+.section h2,
+.section .eyebrow,
+.section .list-lead,
+.section .section-footer,
+.section-intro p,
+.section-heading p,
+.about-copy p,
+.contact-copy p,
+.credential-list li,
+.check-list li {
+  text-shadow: var(--text-glow);
+}
+
+.section h2 {
+  color: var(--text);
+}
+
+.section-intro p,
+.section-heading p,
+.about-copy p,
+.contact-copy p,
+.list-lead,
+.credential-list li,
+.check-list li {
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .eyebrow {
@@ -342,7 +392,7 @@ ul {
   color: var(--accent-deep);
 }
 
-/* Hero — full-bleed band */
+/* Hero — translucent band, strong text */
 .hero {
   position: relative;
   display: grid;
@@ -353,13 +403,28 @@ ul {
   padding: 72px 0;
   overflow: hidden;
   color: var(--text);
-  background: rgba(250, 245, 237, 0.94);
+  background: rgba(250, 245, 237, 0.58);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .hero__content {
   position: relative;
   z-index: 1;
   max-width: 900px;
+}
+
+.brand-signal,
+.hero h1 {
+  color: var(--text);
+  text-shadow: var(--text-glow);
+}
+
+.hero__lead,
+.hero__note {
+  color: var(--muted);
+  font-weight: 500;
+  text-shadow: var(--text-glow);
 }
 
 .brand-signal {
@@ -376,15 +441,12 @@ ul {
   font-size: clamp(2.35rem, 5vw, 3.85rem);
   font-weight: 600;
   max-width: 16ch;
-  color: var(--text);
 }
 
 .hero__lead {
   max-width: 48ch;
   margin-bottom: 32px;
-  color: var(--muted);
   font-size: 1.12rem;
-  font-weight: 400;
 }
 
 .hero__actions {
@@ -396,7 +458,6 @@ ul {
 
 .hero__note {
   margin: 0;
-  color: var(--olive);
   font-size: 0.95rem;
 }
 
@@ -422,6 +483,8 @@ ul {
 .about-profile-section {
   padding: 0;
   background: var(--surface);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .about-profile {
@@ -698,7 +761,7 @@ ul {
   padding: 24px 22px 22px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--surface-card);
   box-shadow: var(--shadow);
 }
 
@@ -746,7 +809,7 @@ ul {
   padding: 28px 26px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--surface-card);
   transition:
     transform 220ms ease,
     border-color 220ms ease,
@@ -821,7 +884,7 @@ ul {
   border: 1px solid var(--line);
   border-top: 3px solid var(--accent);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--surface-card);
   box-shadow: var(--shadow);
 }
 
@@ -847,7 +910,7 @@ ul {
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--surface-card);
   box-shadow: var(--shadow);
 }
 
@@ -923,7 +986,7 @@ ul {
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: var(--surface-card);
   box-shadow: var(--shadow);
 }
 
@@ -1030,7 +1093,9 @@ ul {
 /* Footer */
 .site-footer {
   padding: 40px 0;
-  background: var(--surface);
+  background: rgba(250, 245, 237, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .site-footer .container {
