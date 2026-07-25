@@ -31,7 +31,7 @@ function mapPost(post, index) {
     excerpt: post.excerpt ?? post.description ?? 'Описание появится позже.',
     date: post.date ?? post.publishedAt ?? 'Дата не указана',
     readTime: post.readTime ?? '3 минуты',
-    href: post.href ?? post.url ?? siteData.contacts.bookingUrl,
+    href: post.href ?? post.url ?? siteData.links.telegram,
   };
 }
 

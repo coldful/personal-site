@@ -85,6 +85,10 @@ async function initBlog() {
 
 function bootstrap() {
   applyMeta(siteData.meta);
+  document.documentElement.style.setProperty(
+    '--nature-image',
+    `url('${import.meta.env.BASE_URL}nature.jpg')`,
+  );
   document.getElementById('app').innerHTML = createPageMarkup(siteData);
   initMobileMenu();
   initSmoothScroll();

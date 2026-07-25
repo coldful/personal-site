@@ -32,14 +32,14 @@ function renderPillars(items) {
     .join('');
 }
 
-function renderPrograms(items) {
+function renderPrograms(items, telegramUrl) {
   return items
     .map(
       (item) => `
         <article class="program${item.featured ? ' program--featured' : ''}">
           <h3>${item.title}</h3>
           <p>${item.description}</p>
-          <a class="button ${item.featured ? '' : 'button--secondary'}" href="${item.actionHref}">
+          <a class="button ${item.featured ? '' : 'button--secondary'}" href="${telegramUrl}">
             ${item.actionLabel}
           </a>
         </article>
@@ -88,30 +88,42 @@ function renderTestimonials(items) {
     .join('');
 }
 
-function renderContacts(data) {
+function renderAboutTitles(titles) {
+  return titles
+    .map(
+      (title) => `
+        <p class="about-profile__title">${title}</p>
+      `,
+    )
+    .join('');
+}
+
+function renderContacts(contacts, telegramUrl) {
   return `
     <div class="contact-item">
       <span class="contact-item__label">Email</span>
-      <a href="mailto:${data.email}">${data.email}</a>
+      <a href="mailto:${contacts.email}">${contacts.email}</a>
     </div>
     <div class="contact-item">
       <span class="contact-item__label">Telegram</span>
-      <a href="${data.telegram}" target="_blank" rel="noreferrer">Написать в Telegram</a>
+      <a href="${telegramUrl}" target="_blank" rel="noreferrer">Написать в Telegram</a>
     </div>
   `;
 }
 
-function renderSocials(items) {
+function renderSocials(items, telegramUrl) {
   return items
     .map(
       (item) => `
-        <a href="${item.href}" target="_blank" rel="noreferrer">${item.label}</a>
+        <a href="${item.href ?? telegramUrl}" target="_blank" rel="noreferrer">${item.label}</a>
       `,
     )
     .join('');
 }
 
 export function createPageMarkup(data) {
+  const telegramUrl = data.links.telegram;
+
   return `
     <div class="page-shell">
       <header class="site-header">
@@ -140,7 +152,7 @@ export function createPageMarkup(data) {
             <ul>${renderNavLinks(data.navigation)}</ul>
           </nav>
 
-          <a class="button button--small header-cta" href="${data.contacts.bookingUrl}">
+          <a class="button button--small header-cta" href="${telegramUrl}">
             Запись
           </a>
         </div>
@@ -153,7 +165,7 @@ export function createPageMarkup(data) {
         >
           <div class="container">
             <ul>${renderNavLinks(data.navigation)}</ul>
-            <a class="button" href="${data.contacts.bookingUrl}">Записаться</a>
+            <a class="button" href="${telegramUrl}">Записаться</a>
           </div>
         </nav>
       </header>
@@ -165,7 +177,7 @@ export function createPageMarkup(data) {
             <h1 class="reveal reveal--delay-1">${data.specialist.heroTitle}</h1>
             <p class="hero__lead reveal reveal--delay-2">${data.specialist.heroSubtitle}</p>
             <div class="hero__actions reveal reveal--delay-3">
-              <a class="button" href="${data.specialist.primaryCta.href}">
+              <a class="button" href="${telegramUrl}">
                 ${data.specialist.primaryCta.label}
               </a>
               <a class="button button--ghost" href="${data.specialist.secondaryCta.href}">
@@ -176,14 +188,27 @@ export function createPageMarkup(data) {
           </div>
         </section>
 
-        <section class="section about-card-section" id="about" aria-label="Обо мне">
-          <div class="container">
-            <figure class="about-card">
+        <section class="section about-profile-section" id="about">
+          <div class="container about-profile">
+            <div class="about-profile__media">
               <img
-                src="${data.specialist.aboutCardUrl}"
-                alt="${data.specialist.aboutCardAlt}"
+                src="${data.about.photoUrl}"
+                alt="${data.about.photoAlt}"
               />
-            </figure>
+            </div>
+            <div class="about-profile__content">
+              <span class="eyebrow">${data.about.sectionLabel}</span>
+              <div class="about-profile__titles">
+                ${renderAboutTitles(data.about.titles)}
+              </div>
+              <ul class="credential-list credential-list--compact">
+                ${renderChecklist(data.about.credentials)}
+              </ul>
+              <p class="about-profile__interests">
+                <span>${data.about.interestsLabel}:</span>
+                ${data.about.interests}
+              </p>
+            </div>
           </div>
         </section>
 
@@ -262,7 +287,7 @@ export function createPageMarkup(data) {
               <h2>${data.programs.title}</h2>
             </div>
             <div class="programs-grid">
-              ${renderPrograms(data.programs.items)}
+              ${renderPrograms(data.programs.items, telegramUrl)}
             </div>
             <div class="section-cta">
               <a class="button button--secondary" href="${data.programs.cta.href}">
@@ -275,15 +300,11 @@ export function createPageMarkup(data) {
         <section class="section" id="about-story">
           <div class="container about-copy about-copy--wide">
             <span class="eyebrow">${data.about.sectionLabel}</span>
-            <h2>${data.about.title}</h2>
+            <h2>${data.about.storyTitle}</h2>
             ${data.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
             <blockquote class="about-quote">
               <p>${data.about.quote}</p>
             </blockquote>
-            <ul class="credential-list credential-list--compact">
-              ${renderChecklist(data.about.credentials)}
-            </ul>
-            <p class="about-interests">${data.about.interests}</p>
           </div>
         </section>
 
@@ -317,7 +338,7 @@ export function createPageMarkup(data) {
           <div class="container final-cta__inner">
             <h2>${data.finalCta.title}</h2>
             <p>${data.finalCta.description}</p>
-            <a class="button" href="${data.finalCta.buttonHref}">
+            <a class="button" href="${telegramUrl}">
               ${data.finalCta.buttonLabel}
             </a>
             <p class="final-cta__note">${data.finalCta.note}</p>
@@ -332,7 +353,7 @@ export function createPageMarkup(data) {
                 <h2>${data.blog.title}</h2>
                 <p>${data.blog.description}</p>
               </div>
-              <a class="button button--ghost" href="${data.blog.cta.href}">
+              <a class="button button--ghost" href="${telegramUrl}">
                 ${data.blog.cta.label}
               </a>
             </div>
@@ -347,10 +368,10 @@ export function createPageMarkup(data) {
               <span class="eyebrow">${data.contacts.sectionLabel}</span>
               <h2>${data.contacts.title}</h2>
               <p>${data.contacts.description}</p>
-              <a class="button" href="${data.contacts.bookingUrl}">${data.contacts.bookingLabel}</a>
+              <a class="button" href="${telegramUrl}">${data.contacts.bookingLabel}</a>
             </div>
             <div class="contact-grid">
-              ${renderContacts(data.contacts)}
+              ${renderContacts(data.contacts, telegramUrl)}
             </div>
           </div>
         </section>
@@ -360,15 +381,20 @@ export function createPageMarkup(data) {
         <div class="container site-footer__inner">
           <div>
             <strong>${data.footer.brand}</strong>
-            <p>${data.footer.copyright}</p>
           </div>
           <div class="footer-socials" aria-label="Социальные сети">
-            ${renderSocials(data.contacts.socialLinks)}
+            ${renderSocials(data.contacts.socialLinks, telegramUrl)}
           </div>
         </div>
         <div class="container site-footer__note" id="footer-disclaimer">
           <strong>${data.footer.disclaimerTitle}</strong>
           <p>${data.footer.disclaimerText}</p>
+        </div>
+        <div class="container site-footer__legal">
+          <p>
+            © TatianaWellness, 2019-2022. Любое использование, либо копирование материалов или подборки материалов сайта, элементов дизайна и оформления, допускается лишь с разрешения правообладателя и только со ссылкой на источник:
+            <a href="${data.footer.sourceUrl}" target="_blank" rel="noreferrer">${data.footer.sourceUrl}</a>
+          </p>
         </div>
       </footer>
     </div>
