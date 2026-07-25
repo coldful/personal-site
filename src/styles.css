@@ -455,9 +455,9 @@ ul {
   padding: 72px 0;
   overflow: hidden;
   color: var(--text);
-  background: rgba(250, 245, 237, 0.42);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .hero__content {
