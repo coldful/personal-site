@@ -189,7 +189,7 @@ export function createPageMarkup(data) {
         </section>
 
         <section class="section about-profile-section" id="about">
-          <div class="container about-profile">
+          <div class="about-profile">
             <div class="about-profile__media">
               <img
                 src="${data.about.photoUrl}"

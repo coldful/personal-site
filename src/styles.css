@@ -16,7 +16,8 @@
   --graphite: #3d3f3e;
   --shadow: 0 18px 40px rgba(30, 69, 66, 0.1);
   --radius: 4px;
-  --container: min(1120px, calc(100vw - 40px));
+  --container: 100%;
+  --page-pad: clamp(20px, 5vw, 80px);
   --heading-font: "Newsreader", "Times New Roman", serif;
   --body-font: "Source Sans 3", "Segoe UI", sans-serif;
 }
@@ -93,19 +94,24 @@ ul {
 
 .container {
   width: var(--container);
+  max-width: none;
   margin: 0 auto;
+  padding-inline: var(--page-pad);
+  box-sizing: border-box;
 }
 
 .section {
-  padding: 100px 0;
+  width: 100%;
+  padding: 88px 0;
+  background: var(--surface);
 }
 
 .section--soft {
-  background: rgba(250, 245, 237, 0.72);
+  background: var(--bg-soft);
 }
 
 .section--contact {
-  padding-bottom: 120px;
+  padding-bottom: 112px;
 }
 
 .eyebrow {
@@ -336,27 +342,24 @@ ul {
   color: var(--accent-deep);
 }
 
-/* Hero */
+/* Hero — full-bleed band */
 .hero {
   position: relative;
   display: grid;
   align-items: center;
+  width: 100%;
   min-height: calc(100vh - 96px);
   min-height: calc(100svh - 96px);
-  padding: 72px 0 64px;
+  padding: 72px 0;
   overflow: hidden;
   color: var(--text);
+  background: rgba(250, 245, 237, 0.94);
 }
 
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 760px;
-  padding: 36px 40px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  max-width: 900px;
 }
 
 .brand-signal {
@@ -415,56 +418,49 @@ ul {
   animation-delay: 0.36s;
 }
 
-/* About profile */
+/* About profile — full-bleed */
 .about-profile-section {
-  padding-top: 40px;
+  padding: 0;
+  background: var(--surface);
 }
 
 .about-profile {
   display: grid;
-  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.15fr);
-  gap: 40px;
-  align-items: center;
-  padding: 36px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 0;
+  align-items: stretch;
+  width: 100%;
+  min-height: min(88vh, 860px);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   background: var(--surface);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .about-profile__media {
-  justify-self: center;
-  width: min(100%, 340px);
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
   overflow: hidden;
-  border-radius: 50%;
-  border: 2px solid #c4a574;
-  box-shadow: 0 0 0 6px rgba(196, 165, 116, 0.18);
-  background: #faf5ed;
-  aspect-ratio: 1;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--bg-soft);
 }
 
 .about-profile__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center top;
 }
 
 .about-profile__content {
-  position: relative;
-  padding-right: 56px;
-}
-
-.about-profile__content::after {
-  content: "";
-  position: absolute;
-  right: -8px;
-  top: 12px;
-  width: 52px;
-  height: 220px;
-  background: url("./assets/decor/leaves-right.png") no-repeat center top / contain;
-  opacity: 0.9;
-  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(36px, 6vw, 88px) var(--page-pad);
 }
 
 .about-profile__titles {
@@ -498,70 +494,33 @@ ul {
 
 /* Section structure */
 .section-intro {
-  position: relative;
-  max-width: 560px;
+  max-width: none;
+  width: 100%;
   margin-bottom: 40px;
-  padding: 28px 28px 28px 56px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.section-intro::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 28px;
-  width: 32px;
-  height: 150px;
-  background: url("./assets/decor/leaf-accent.png") no-repeat center top / contain;
-  opacity: 0.88;
-  pointer-events: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .section-intro--wide {
-  max-width: 720px;
-}
-
-.section-intro--wide::after {
-  content: "";
-  position: absolute;
-  right: -12px;
-  bottom: -8px;
-  width: 40px;
-  height: 170px;
-  background: url("./assets/decor/leaves-right.png") no-repeat center bottom / contain;
-  opacity: 0.55;
-  pointer-events: none;
-  transform: scaleX(-1);
+  max-width: none;
 }
 
 .about-copy--wide {
-  position: relative;
-  max-width: 760px;
-  padding: 32px 32px 32px 56px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.about-copy--wide::before {
-  content: "";
-  position: absolute;
-  left: 12px;
-  top: 28px;
-  width: 34px;
-  height: 180px;
-  background: url("./assets/decor/leaves-left.png") no-repeat center top / contain;
-  opacity: 0.8;
-  pointer-events: none;
+  max-width: none;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .about-copy p {
   margin-bottom: 18px;
-  max-width: 58ch;
+  max-width: 70ch;
 }
 
 .section-intro h2,
@@ -606,11 +565,10 @@ ul {
   gap: 24px;
   align-items: end;
   margin-bottom: 34px;
-  padding: 28px 32px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .list-lead {
@@ -640,11 +598,11 @@ ul {
 
 .section-split .credential-list,
 .check-list--columns {
-  padding: 8px 24px 16px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .credential-list li,
@@ -688,11 +646,12 @@ ul {
 .pillars {
   display: grid;
   gap: 0;
-  padding: 8px 28px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  padding: 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .pillar {
@@ -1024,13 +983,13 @@ ul {
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: 40px;
+  gap: 48px;
   align-items: start;
-  padding: 36px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .contact-grid {
@@ -1070,18 +1029,24 @@ ul {
 
 /* Footer */
 .site-footer {
-  padding: 0 0 40px;
+  padding: 40px 0;
+  background: var(--surface);
+}
+
+.site-footer .container {
+  display: grid;
+  gap: 24px;
 }
 
 .site-footer__inner,
 .site-footer__note,
 .site-footer__legal {
-  padding: 24px 28px;
-  margin-top: 0;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: var(--shadow);
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .site-footer__inner {
@@ -1089,11 +1054,13 @@ ul {
   justify-content: space-between;
   gap: 18px;
   align-items: center;
-  margin-bottom: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
 }
 
 .site-footer__note {
-  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
 }
 
 .site-footer__note strong {
@@ -1103,7 +1070,7 @@ ul {
 
 .site-footer__legal p {
   margin: 0;
-  max-width: 78ch;
+  max-width: 90ch;
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.55;
@@ -1164,21 +1131,18 @@ ul {
     grid-template-columns: 1fr;
   }
 
+  .about-profile {
+    min-height: 0;
+  }
+
   .about-profile__media {
-    max-width: 300px;
-    margin: 0 auto;
+    min-height: 420px;
+    max-width: none;
+    margin: 0;
   }
 
   .about-profile__content {
-    padding-right: 0;
-  }
-
-  .about-profile__content::after {
-    display: none;
-  }
-
-  .section-intro--wide::after {
-    display: none;
+    padding: 40px var(--page-pad);
   }
 
   .section-heading--split {
@@ -1188,11 +1152,7 @@ ul {
 
   .hero {
     min-height: auto;
-    padding: 48px 0 40px;
-  }
-
-  .hero__content {
-    padding: 28px 22px;
+    padding: 48px 0;
   }
 
   html {
