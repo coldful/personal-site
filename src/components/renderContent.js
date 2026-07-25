@@ -160,14 +160,6 @@ export function createPageMarkup(data) {
 
       <main>
         <section class="hero" id="hero">
-          <div class="hero__media" aria-hidden="true">
-            <img
-              src="${data.specialist.avatarUrl}"
-              alt=""
-              class="hero__image"
-            />
-          </div>
-          <div class="hero__veil" aria-hidden="true"></div>
           <div class="container hero__content">
             <p class="brand-signal reveal">${data.specialist.name}</p>
             <h1 class="reveal reveal--delay-1">${data.specialist.heroTitle}</h1>
@@ -181,6 +173,17 @@ export function createPageMarkup(data) {
               </a>
             </div>
             <p class="hero__note reveal reveal--delay-3">${data.specialist.heroNote}</p>
+          </div>
+        </section>
+
+        <section class="section about-card-section" id="about" aria-label="Обо мне">
+          <div class="container">
+            <figure class="about-card">
+              <img
+                src="${data.specialist.aboutCardUrl}"
+                alt="${data.specialist.aboutCardAlt}"
+              />
+            </figure>
           </div>
         </section>
 
@@ -269,26 +272,18 @@ export function createPageMarkup(data) {
           </div>
         </section>
 
-        <section class="section" id="about">
-          <div class="container about-layout">
-            <div class="about-portrait">
-              <img
-                src="${data.specialist.avatarUrl}"
-                alt="${data.specialist.avatarAlt}"
-              />
-            </div>
-            <div class="about-copy">
-              <span class="eyebrow">${data.about.sectionLabel}</span>
-              <h2>${data.about.title}</h2>
-              ${data.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
-              <blockquote class="about-quote">
-                <p>${data.about.quote}</p>
-              </blockquote>
-              <ul class="credential-list credential-list--compact">
-                ${renderChecklist(data.about.credentials)}
-              </ul>
-              <p class="about-interests">${data.about.interests}</p>
-            </div>
+        <section class="section" id="about-story">
+          <div class="container about-copy about-copy--wide">
+            <span class="eyebrow">${data.about.sectionLabel}</span>
+            <h2>${data.about.title}</h2>
+            ${data.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
+            <blockquote class="about-quote">
+              <p>${data.about.quote}</p>
+            </blockquote>
+            <ul class="credential-list credential-list--compact">
+              ${renderChecklist(data.about.credentials)}
+            </ul>
+            <p class="about-interests">${data.about.interests}</p>
           </div>
         </section>
 
