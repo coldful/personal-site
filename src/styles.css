@@ -28,24 +28,20 @@
 
 html {
   scroll-behavior: smooth;
+  min-height: 100%;
+  background-color: var(--bg);
+  background-image: url("./assets/nature.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 body {
   margin: 0;
   min-width: 320px;
-  background-color: var(--bg);
-  background-image:
-    linear-gradient(
-      180deg,
-      rgba(243, 235, 224, 0.55) 0%,
-      rgba(243, 235, 224, 0.48) 45%,
-      rgba(235, 226, 212, 0.62) 100%
-    ),
-    url("./assets/nature.jpg");
-  background-size: cover;
-  background-position: center top;
-  background-attachment: scroll;
-  background-repeat: no-repeat;
+  min-height: 100%;
+  background: transparent;
   color: var(--text);
   font-family: var(--body-font);
   font-size: 1.0625rem;
@@ -1065,6 +1061,10 @@ ul {
   .hero__content {
     padding: 28px 22px;
   }
+
+  html {
+    background-attachment: scroll;
+  }
 }
 
 @media (max-width: 720px) {
@@ -1113,9 +1113,6 @@ ul {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  body {
     background-attachment: scroll;
   }
 
