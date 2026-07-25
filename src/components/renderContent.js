@@ -253,9 +253,9 @@ export function createPageMarkup(data) {
           </div>
         </section>
 
-        <section class="section section--soft" id="method">
+        <section class="section section--method" id="method">
           <div class="container">
-            <div class="section-intro section-intro--wide">
+            <div class="section-intro section-intro--narrow">
               <span class="eyebrow">${data.method.sectionLabel}</span>
               <h2>${data.method.title}</h2>
               <p>${data.method.description}</p>
@@ -297,14 +297,16 @@ export function createPageMarkup(data) {
           </div>
         </section>
 
-        <section class="section" id="about-story">
-          <div class="container about-copy about-copy--wide">
-            <span class="eyebrow">${data.about.sectionLabel}</span>
-            <h2>${data.about.storyTitle}</h2>
-            ${data.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
-            <blockquote class="about-quote">
-              <p>${data.about.quote}</p>
-            </blockquote>
+        <section class="section section--about-story" id="about-story">
+          <div class="container">
+            <div class="about-copy about-copy--narrow">
+              <span class="eyebrow">${data.about.sectionLabel}</span>
+              <h2>${data.about.storyTitle}</h2>
+              ${data.about.paragraphs.map((paragraph) => `<p>${paragraph}</p>`).join('')}
+              <blockquote class="about-quote">
+                <p>${data.about.quote}</p>
+              </blockquote>
+            </div>
           </div>
         </section>
 
